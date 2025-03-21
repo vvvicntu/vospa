@@ -9,7 +9,7 @@ main {
     background-color: rgb(250, 207, 237);
     color: rgb(172, 10, 128);
     font-family: Arial;
-    margin: 10px;
+    margin: 10px 20px 45px;
 }
 
 header {
@@ -26,6 +26,10 @@ footer {
     font-family: Arial;
     padding: 7px;
     text-align: right;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    left: 0;
 }
 
 a {
@@ -55,4 +59,21 @@ a:active {
     color: black;
     opacity: 0.7;
     background-color: rgba(103, 16, 185, 0.475);
+}
+
+div.menu {
+    border: 3px rgb(219, 52, 161) solid;
+    border-radius: 5px;
+    width: 250px;
+    margin: 0 auto;
+    opacity: 0.9;
+}
+
+div.menu:hover {
+    background-color: rgba(169, 201, 252, 0.607);
+    box-shadow: 0 0 15px rgba(165, 42, 42, 0.904);
+}
+
+h1 {
+    text-shadow: 0 0 10px rgba(165, 42, 42, 0.717);
 }
