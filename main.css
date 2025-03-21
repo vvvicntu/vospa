@@ -27,3 +27,31 @@ footer {
     padding: 7px;
     text-align: right;
 }
+
+a {
+    color: rgb(147, 6, 74);
+    text-decoration: none;
+    
+}
+
+a:link {
+    color: rgb(153, 13, 13);
+    text-decoration: underline;
+}
+
+a:visited {
+    color: rgb(134, 10, 188);
+    text-decoration: none;
+}
+
+a:hover {
+    color: rgb(134, 10, 188);
+    text-decoration: solid;
+    background-color: rgb(208, 248, 248);
+}
+
+a:active {
+    color: black;
+    opacity: 0.7;
+    background-color: rgba(103, 16, 185, 0.475);
+}
