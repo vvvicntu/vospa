@@ -9,11 +9,16 @@
         <link rel="shortcut icon" href="../favicon-32x32.png">
         <link rel="icon" href="../favicon-16x16.png">
         <style>
+
+            .discount div {
+                display: none; /* Скрываем текст по умолчанию */
+            }
+
             div.discount div {
                 display: none;
             }
 
-            h1:hover+div {
+            .discount h1:hover+div {
                 display: block;
             }
 
