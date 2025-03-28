@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Воспанчук Виктория Владимировна. Позиционирование</title>
+        <link rel="stylesheet" href="../main.css">
+        <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
+        <link rel="shortcut icon" href="../favicon-32x32.png">
+        <link rel="icon" href="../favicon-16x16.png">
+        <style>
+            div { 
+                text-align: center;
+            }
+
+            .bubble1, .bubble2, .bubble3, .bubble4 {
+                border: 2px solid rgb(0, 0, 0);
+                background-color: rgb(247, 228, 198);
+                color: rgb(172, 85, 15);
+                position: absolute;
+                text-align: center;
+                border-radius: 50%;
+                padding: 10px;
+                font-size: 16px;
+                box-shadow: 3px 3px 5px rgba(37, 37, 37, 0.543);
+                opacity: 0; 
+                transition: opacity 0.3s ease-in-out; /* Плавное появление */
+        }
+
+            .bubble1 {
+                top: 50px;
+                right: 350px;
+                width: 100px;
+                height: 40px;
+                z-index: 4;
+            }
+
+            .bubble2 {
+                top: 100px;
+                right: 430px;
+                width: 50px;
+                height: 20px;
+                z-index: 3;
+            }
+
+            .bubble3 {
+                top: 130px;
+                right: 480px;
+                width: 35px;
+                height: 15px;
+                z-index: 2;
+            }
+
+            .bubble4 {
+                top: 155px;
+                right: 520px;
+                width: 25px;
+                height: 10px;
+                z-index: 1;
+            }
+
+            .comic:hover .bubble1 {
+            opacity: 1;
+            transition-delay: 0.8s; /* небольшая задержка для последовательности */
+        }
+
+            .comic:hover .bubble2 {
+                opacity: 1;
+                transition-delay: 0.6s;
+            }
+
+            .comic:hover .bubble3 {
+                opacity: 1;
+                transition-delay: 0.4s;
+            }
+
+            .comic:hover .bubble4 {
+                opacity: 1;
+                transition-delay: 0.2s;
+
+            .comic img {
+                width: 100%;
+                display: block;
+        }
+
+        </style>
+    </head>
+    <body>
+        <header>
+            НГТУ, ФБ, Лабораторная работа 4.
+        </header>
+        
+        <main>
+            <div class="comic">
+                <img src="https://i.pinimg.com/originals/81/db/2c/81db2c4d4891ee1185c1e0273ed96e0b.jpg" width="700px"
+            </div>
+
+            <div class="bubble1">Хочу Lit Energy!</div>
+            <div class="bubble2"></div>
+            <div class="bubble3"></div>
+            <div class="bubble4"></div>
+        </main>
+
+        <footer>
+            &copy; Воспанчк Виктория, ФБИ-31, 2 курс, 2023
+        </footer>
+    </body>
+</html>
