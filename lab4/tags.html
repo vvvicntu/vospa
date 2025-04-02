@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Воспанчук Виктория Владимировна. Облако тегов</title>
+    <link rel="stylesheet" href="../main.css">
+    <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
+    <link rel="icon" href="../favicon-32x32.png">
+    <link rel="icon" href="../favicon-16x16.png">
+    <style>
+        main {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .tag-cloud {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        .tag {
+            position: absolute; /* Позволяет позиционировать теги случайным образом */
+            margin: 0;
+            padding: 5px 10px;
+            border-radius: 5px;
+            color: white; /* Цвет текста */
+            transition: transform 0.3s, box-shadow 0.3s;
+            font-weight: bold;
+            /* Убираем фон у тегов */
+        }
+
+        /* Примеры разных стилей для тегов с случайными координатами */
+        .tag1 { font-size: 54px; top: 10%; left: 5%; transform: rotate(-10deg); color: blueviolet; }
+        .tag2 { font-size: 48px; top: 30%; left: 70%; transform: rotate(15deg); color: rgb(106, 89, 255); }
+        .tag3 { font-size: 60px; top: 35%; left: 10%; transform: rotate(15deg); color: rgb(194, 0, 165); }
+        .tag4 { font-size: 100px; top: 70%; left: 40%; transform: rotate(10deg); color: rgb(176, 0, 0); }
+        .tag5 { font-size: 93px; top: 20%; left: 30%; transform: rotate(5deg); color: rgb(0, 181, 194); }
+        .tag6 { font-size: 36px; top: 60%; left: 30%; transform: rotate(-5deg); color: rgb(209, 5, 5); }
+        .tag7 { font-size: 64px; top: 50%; left: 80%; transform: rotate(0deg); color: rgb(255, 50, 200); }
+        .tag8 { font-size: 54px; top: 80%; left: 25%; transform: rotate(10deg); color: rgb(0, 184, 159); }
+        .tag9 { font-size: 41px; top: 10%; left: 55%; transform: rotate(-20deg); color: rgb(255, 106, 0); }
+        .tag10 { font-size: 40px; top: 65%; left: 55%; transform: rotate(20deg); color: rgb(0, 0, 0); }
+        .tag11 { font-size: 31px; top: 70%; left: 10%; transform: rotate(-25deg); color: rgb(243, 0, 231); }
+        .tag12 { font-size: 56px; top: 5%; left: 35%; transform: rotate(12deg); color: rgb(0, 181, 194); }
+        .tag13 { font-size: 21px; top: 45%; left: 45%; transform: rotate(-8deg); color: rgb(0, 104, 16); }
+        .tag14 { font-size: 29px; top: 10%; left: 85%; transform: rotate(4deg); color: rgb(47, 0, 255); }
+        .tag15 { font-size: 24px; top: 55%; left: 15%; transform: rotate(-12deg); color: rgb(0, 0, 0); }
+
+        .tag:hover {
+            transform: scale(1.5); /* Увеличивает тег */
+            text-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+            z-index: 1; /* Выводит тег поверх остальных */
+        }
+    </style>
+
+</head>
+
+<body>
+    <header>
+        Сон алкоголика
+    </header>
+
+    <main>
+        <div class="tag-cloud">
+            <div class="tag tag1">Heineken</div>
+            <div class="tag tag2">Guinness</div>
+            <div class="tag tag3">Budweiser</div>
+            <div class="tag tag4">Corona</div>
+            <div class="tag tag5">Балтика</div>
+            <div class="tag tag6">Essa</div>
+            <div class="tag tag7">Leffe </div>
+            <div class="tag tag8">Tuborg</div>
+            <div class="tag tag9">Старый мельник</div>
+            <div class="tag tag10">Сибирская корона</div>
+            <div class="tag tag11">Жигули</div>
+            <div class="tag tag12">Damm</div>
+            <div class="tag tag13">Клинское</div>
+            <div class="tag tag14">Garage</div>
+            <div class="tag tag15">Hoegaarden</div>
+        </div>
+    </main>
+
+    <footer>
+        &copy; Воспанчук Виктория, ФБИ-31, 2 курс, 2025
+    </footer>
+
+</body>
+</html>
