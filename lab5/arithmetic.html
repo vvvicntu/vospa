@@ -15,6 +15,16 @@
                 let result = a + b;
                 alert('Сумма ' + a + ' и ' + b + ' равна ' + result);
             }
+
+            function showAuthor() {
+                let author = 'Автор страницы:\nВоспанчук Виктория Владимировна';
+                alert(author);
+            }
+
+            function showFooter() {
+                let footer = 'Добро пожаловать в подвал!\nХендель-мендель, хендель-ду! Хорошо у нас в аду!'
+                alert(footer)
+            }
         </script>
         <style>
             .message { 
@@ -30,20 +40,24 @@
                 display: inline-block;
                 cursor: pointer;
                 }
+
+            .footer {
+                cursor: wait;
+            }
         </style>
     </head>
     <body>
-        <header>
+        <header onclick="showAuthor()">
             НГТУ, ФБ, Лабораторная работа 4.
         </header>
         
         <main>
             <div class="message" onclick="showSum()">Сколько будет 5154+7891?</div>
-            <div class="message">Узнать, кто автор страницы</div>
+            <div class="message" onclick="showAuthor()">Узнать, кто автор страницы</div>
         </main>
 
-        <footer>
-            &copy; Воспанчк Виктория, ФБИ-31, 2 курс, 2023
+        <footer class="footer" ondblclick="showFooter()">
+            &copy; Воспанчук Виктория, ФБИ-31, 2 курс, 2023
         </footer>
     </body>
 </html>
