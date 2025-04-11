@@ -3,15 +3,18 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Воспанчук Виктория Владимировна. Лабораторная работа 4</title>
+        <title>Воспанчук Виктория Владимировна. Арифметика</title>
         <link rel="stylesheet" href="../main.css">
         <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
         <link rel="shortcut icon" href="../favicon-32x32.png">
         <link rel="icon" href="../favicon-16x16.png">
         <script>
             function showSum() {
-                let a = 5154;
-                let b = 7891;
+                let inputA = document.getElementById('numberA');
+                let inputB = document.getElementById('numberB');
+
+                let a = parseInt(inputA.value);
+                let b = parseInt(inputB.value);
                 let result = a + b;
                 alert('Сумма ' + a + ' и ' + b + ' равна ' + result);
             }
@@ -25,6 +28,26 @@
                 let footer = 'Добро пожаловать в подвал!\nХендель-мендель, хендель-ду! Хорошо у нас в аду!'
                 alert(footer)
             }
+
+            function showRazn() {
+                let inputA = document.getElementById('numberA');
+                let inputB = document.getElementById('numberB');
+
+                let a = parseInt(inputA.value);
+                let b = parseInt(inputB.value);
+                let result = a - b;
+                alert('Разность ' + a + ' и ' + b + ' равна ' + result);
+            }
+
+            function showPro() {
+                let inputA = document.getElementById('numberA');
+                let inputB = document.getElementById('numberB');
+
+                let a = parseInt(inputA.value);
+                let b = parseInt(inputB.value);
+                let result = a * b;
+                alert('Произведение ' + a + ' и ' + b + ' равно ' + result);
+            }
         </script>
         <style>
             .message { 
@@ -34,6 +57,7 @@
                 width: 250px;
                 height: 25px;
                 padding: 5px;
+                margin: 10px;
                 text-align: center;
                 border-radius: 10px;
                 box-shadow: 0 0 10px rgba(0, 0, 255, 0.397);
@@ -48,11 +72,15 @@
     </head>
     <body>
         <header onclick="showAuthor()">
-            НГТУ, ФБ, Лабораторная работа 4.
+            НГТУ, ФБ, Лабораторная работа 5.
         </header>
         
         <main>
-            <div class="message" onclick="showSum()">Сколько будет 5154+7891?</div>
+            <label>Первое число: <input type="number" value="0" id="numberA"></label><br><br>
+            <label>Второе число: <input type="number" value="0" id="numberB"></label><br><br>
+            <div class="message" onclick="showSum()">Найти сумму чисел</div>
+            <div class="message" onclick="showRazn()">Найти разность чисел</div>
+            <div class="message" onclick="showPro()">Найти произведение чисел</div>
             <div class="message" onclick="showAuthor()">Узнать, кто автор страницы</div>
         </main>
 
