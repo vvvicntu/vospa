@@ -48,6 +48,49 @@
                 let result = a * b;
                 alert('Произведение ' + a + ' и ' + b + ' равно ' + result);
             }
+
+            function showDel() {
+                let inputA = document.getElementById('numberA');
+                let inputB = document.getElementById('numberB');
+
+                let a = parseInt(inputA.value);
+                let b = parseInt(inputB.value);
+                if(b==0) {
+                    alert('На ноль делить нельзя!');
+                    inputB.focus();
+                    inputB.select();
+                    inputB.style.color = 'red';
+                    inputB.style.borderColor = 'red';
+                    return;
+                }
+
+                if(isNaN(a)) {
+                    alert('Введите числовое значение в первое поле')
+                    inputA.focus();
+                    inputA.select();
+                    inputA.style.color = 'red';
+                    inputA.style.borderColor = 'red';
+                    return
+                }
+
+                if(isNaN(b)) {
+                    alert('Введите числовое значение во второе поле')
+                    inputB.focus();
+                    inputB.select();
+                    inputB.style.color = 'red';
+                    inputB.style.borderColor = 'red';
+                    return
+                }
+
+                inputB.style.color = '';
+                inputB.borderColor = '';
+
+                inputA.style.color = '';
+                inputA.borderColor = '';
+
+                let result = a / b;
+                alert('Отношение ' + a + ' и ' + b + ' равно ' + result);
+            }
         </script>
         <style>
             .message { 
@@ -65,7 +108,11 @@
                 cursor: pointer;
                 }
 
-            .footer {
+            footer {
+                cursor: wait;
+            }
+
+            header {
                 cursor: wait;
             }
         </style>
@@ -81,10 +128,11 @@
             <div class="message" onclick="showSum()">Найти сумму чисел</div>
             <div class="message" onclick="showRazn()">Найти разность чисел</div>
             <div class="message" onclick="showPro()">Найти произведение чисел</div>
+            <div class="message" onclick="showDel()">Найти отношение чисел</div>
             <div class="message" onclick="showAuthor()">Узнать, кто автор страницы</div>
         </main>
 
-        <footer class="footer" ondblclick="showFooter()">
+        <footer ondblclick="showFooter()">
             &copy; Воспанчук Виктория, ФБИ-31, 2 курс, 2023
         </footer>
     </body>
