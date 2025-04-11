@@ -118,20 +118,18 @@
                 }
                
                 if (a === 0 && b === 0) {
-                    alert('Ошибка: оба числа не могут быть равны нулю!');
+                    alert('Ошибка: оба числа не могут быть равны нулю!\nВведите ненулевые значения в поля');
 
-                    alert('Введите числовое значение в первое поле')
                     inputA.focus();
                     inputA.select();
                     inputA.style.color = 'red';
                     inputA.style.borderColor = 'red';
 
-                    alert('Введите числовое значение во второе поле')
                     inputB.focus();
                     inputB.select();
                     inputB.style.color = 'red';
                     inputB.style.borderColor = 'red';
-                    
+
                     return;
                 }
     
