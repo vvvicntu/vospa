@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Воспанчук Виктория Владимировна. Корзина</title>
+        <link rel="stylesheet" href="../main.css">
+        <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
+        <link rel="shortcut icon" href="../favicon-32x32.png">
+        <link rel="icon" href="../favicon-16x16.png">
+        <script>
+            function KorzinaProductov() {
+
+                let a = parseInt(document.getElementById("productA").value) || 0;
+                let b = parseInt(document.getElementById("productB").value) || 0;
+                let c = parseInt(document.getElementById("productC").value) || 0;
+                let d = parseInt(document.getElementById("productD").value) || 0;
+                let e = parseInt(document.getElementById("productE").value) || 0;
+                
+                let result = a*100 + b*110 + c*100 + d*90 + e*100;
+
+                document.getElementById("price").innerHTML = "Общая цена: " + result + "₽";
+            }
+
+            function showClean() {
+                document.getElementById("productA").value = "0";
+                document.getElementById("productB").value = "0";
+                document.getElementById("productC").value = "0";
+                document.getElementById("productD").value = "0";
+                document.getElementById("productE").value = "0";
+
+                document.getElementById("price").innerHTML = "";
+            }
+        </script>
+        <style>
+
+            .korzina {
+                border: 3px slateblue solid;
+                width: 400px;
+                text-align: center;
+                margin: 10px auto;
+                padding: 15px;
+                line-height: 1.3;
+                background-color: aliceblue;
+                color: rgb(109, 109, 199);
+                box-shadow: 0 0 13px rgb(191, 131, 248);
+            }
+
+            h1 {
+                text-shadow: none;
+            }
+
+            .button {
+                margin: 5px;
+                padding: 15px;
+                display: inline;
+            }
+
+            .product {
+                margin: 15px;
+            }
+
+            #price {
+                margin-top: 20px;
+                font-weight: bold;
+            }
+
+            main {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+        </style>
+    </head>
+    <body>
+        <header>
+            НГТУ, ФБ, Лабораторная работа 4.
+        </header>
+        
+        <main>
+            <div class="korzina">
+                <h1>Корзина товаров</h1>
+
+                <div class="product">
+                    <label>Lit Energy Оригинальный (100 руб./шт) <br><input type="number"
+                        placeholder="Вводите количество" id="productA" min="0" value="0"></label><br><br>
+
+                    <label>Lit Energy Berry Coconut (110 руб./шт)<br><input type="number"
+                        placeholder="Вводите количество" id="productB" min="0" value="0"></label><br><br>
+
+                    <label>Lit Energy Cola (100 руб./шт)<br><input type="number"
+                        placeholder="Вводите количество" id="productC" min="0" value="0"></label><br><br>
+
+                    <label>Lit Energy Bluberry (90 руб./шт)<br><input type="number"
+                        placeholder="Вводите количество" id="productD" min="0" value="0"></label><br><br>
+
+                    <label>Lit Energy Без сахара (100 руб./шт)<br><input type="number"
+                        placeholder="Вводите количество" id="productE" min="0" value="0"></label><br><br>
+                </div>
+
+                <div class="button">
+                    <input type="button" value="Рассчитать" onclick="KorzinaProductov()">
+                </div>
+
+                <div class="button">
+                    <input type="button" value="Очистить" onclick="showClean()">
+                </div>
+                
+
+                <div id="price"></div>
+
+            </div>
+        </main>
+
+        <footer>
+            &copy; Воспанчк Виктория, ФБИ-31, 2 курс, 2023
+        </footer>
+    </body>
+</html>
