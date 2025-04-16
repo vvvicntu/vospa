@@ -141,22 +141,59 @@
                 let result = a ** b;
                 alert('Число ' + a + ' в степени ' + b + ' равно ' + result);
             }
+
+            function changeOutput(buttonNum, backColor, textColor, borderStyle, borderRadius, borderWidth, borderColor) {
+            let output = document.getElementById('output');
+            output.innerHTML = 'Нажата кнопка ' + buttonNum;
+            output.style.backgroundColor = backColor;
+            output.style.color = textColor;
+            output.style.borderStyle = borderStyle;
+            output.style.borderRadius = borderRadius;
+            output.style.borderWidth = borderWidth;
+            output.style.borderColor = borderColor;
+            output.style.padding = '15px';
+            output.style.margin = '10px 0';
+        }
         </script>
         <style>
-            .message { 
-                border: 2px solid rgb(115, 0, 209);
-                background-color: blueviolet;
-                color: white;
-                width: 250px;
-                height: 25px;
-                padding: 5px;
+            .num {
                 margin: 10px;
+                font-size: 22px;
+                padding: 8px;
+                color: rgb(53, 53, 53);
+            }
+
+            .mes {
                 text-align: center;
-                border-radius: 10px;
-                box-shadow: 0 0 10px rgba(0, 0, 255, 0.397);
+            }
+
+            .button {
+                text-align: center;
+                margin: 10px;
+            }
+
+            .down {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .message { 
+                margin: 10px;
+                padding: 8px;
+                width: 400px;
+                height: 30px;
+                background: linear-gradient(to left, rgba(103, 113, 255, 0.5),
+                rgba(186, 165, 248, 0.5));
+                border: 2px solid rgb(0, 0, 0);
+                border-radius: 7px;
+                box-shadow: 0 0 13px rgba(255, 255, 255, 0.616);
+                font-size: 22px;
+                color: rgb(53, 53, 53);
+                text-align: center;
                 display: inline-block;
                 cursor: pointer;
-                }
+            }
 
             footer {
                 cursor: wait;
@@ -165,6 +202,15 @@
             header {
                 cursor: wait;
             }
+
+            #output {
+                border: 1px solid;
+                width: 300px;
+                height: 40px;
+                margin: 10px;
+                text-align: center;
+            }
+
         </style>
     </head>
     <body>
@@ -173,14 +219,30 @@
         </header>
         
         <main>
-            <label>Первое число: <input type="number" value="0" id="numberA"></label><br><br>
-            <label>Второе число: <input type="number" value="0" id="numberB"></label><br><br>
-            <div class="message" onclick="showSum()">Найти сумму чисел</div>
-            <div class="message" onclick="showRazn()">Найти разность чисел</div>
-            <div class="message" onclick="showPro()">Найти произведение чисел</div>
-            <div class="message" onclick="showDel()">Найти отношение чисел</div>
-            <div class="message" onclick="showSt()">Возвести число в степень</div>
-            <div class="message" onclick="showAuthor()">Узнать, кто автор страницы</div>
+            <div class="num">
+                <label>Первое число: <input type="number" value="0" id="numberA"></label><br><br>
+                <label>Второе число: <input type="number" value="0" id="numberB"></label><br><br>
+            </div>
+
+            <div class="mes">
+                <div class="message" onclick="showSum()">Найти сумму чисел</div>
+                <div class="message" onclick="showRazn()">Найти разность чисел</div>
+                <div class="message" onclick="showPro()">Найти произведение чисел</div>
+                <div class="message" onclick="showDel()">Найти отношение чисел</div>
+                <div class="message" onclick="showSt()">Возвести число в степень</div>
+                <div class="message" onclick="showAuthor()">Узнать, кто автор страницы</div>
+            </div>
+
+            <div class="button">
+                <input type="button" value="Кнопка 1" onclick="changeOutput(1, 'red', 'yellow', 'dotted','10px', '3px', 'black')">
+                <input type="button" value="Кнопка 2" onclick="changeOutput(2, 'black', 'lime', 'dotted','10px', '3px', 'white')">
+                <input type="button" value="Кнопка 3" onclick="changeOutput(3, 'lightblue', 'black', 'dotted','10px', '3px', 'black')">
+                <input type="button" value="Кнопка 4" onclick="changeOutput(4, 'lightgreen', 'darkgreen', 'dotted','10px', '3px', 'black')">
+            </div>
+
+            <div class="down">
+                <div id="output"></div>
+            </div>
         </main>
 
         <footer ondblclick="showFooter()">
