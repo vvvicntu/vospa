@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Воспанчук Виктория Владимировна. Лабораторная работа 4</title>
+        <link rel="stylesheet" href="../main.css">
+        <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
+        <link rel="shortcut icon" href="../favicon-32x32.png">
+        <link rel="icon" href="../favicon-16x16.png">
+        <script>
+            function showCoords() {
+            let x = this.event.x;
+            let y = this.event.y;
+            let div = document.getElementById('block');
+            
+            div.style.color = 'black';
+            div.style.backgroundColor = 'aliceblue';
+            
+            if(this.event.ctrlKey && this.event.altKey && this.event.shiftKey) {
+                /* Если нажаты 3 клавиши */
+                div.style.color = 'purple';
+                div.style.backgroundColor = 'lightyellow';
+                div.innerHTML = '<b>x</b> = ' + x + 'px<br><b>y</b> = ' + y + 'px<br><i>Нажаты Ctrl, Alt и Shift</i>';
+            }
+            else if(this.event.ctrlKey) {
+                /* Только Ctrl */
+                div.style.color = 'brown';
+                div.innerHTML = '<b>x</b> = ' + x + 'px<br><b>y</b> = ' + y + 'px<br><i>Нажата клавиша Ctrl</i>';
+            } 
+            else if(this.event.altKey) {
+                /* Только Alt */
+                div.style.color = 'darkgreen';
+                div.style.backgroundColor = 'lightgreen';
+                div.innerHTML = '<b>x</b> = ' + x + 'px<br><b>y</b> = ' + y + 'px<br><i>Нажата клавиша Alt</i>';
+            } 
+            else if(this.event.shiftKey) {
+                /* Только Shift */
+                div.style.color = 'blueviolet';
+                div.style.backgroundColor = 'lightblue';
+                div.innerHTML = '<b>x</b> = ' + x + 'px<br><b>y</b> = ' + y + 'px<br><i>Нажата клавиша Shift</i>';
+            } 
+            else {
+                // Ничего не нажато
+                div.innerHTML = '<b>x</b> = ' + x + 'px<br><b>y</b> = ' + y + 'px';
+            }
+            
+        }
+        </script>
+        <style>
+            .a {
+                width: 400px;
+                height: 400px;
+                border: 4px solid rgb(156, 0, 0);
+                cursor: crosshair;
+                background-color: aliceblue;
+                text-align: center;
+                padding: 15px;
+                margin: 10px;
+            }
+
+            main {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+        </style>
+    </head>
+    <body>
+        <header>
+            НГТУ, ФБ, Лабораторная работа 5.
+        </header>
+        
+        <main>
+            <div class="a" id="block" onmousemove="showCoords()"></div>
+        </main>
+
+        <footer>
+            &copy; Воспанчук Виктория, ФБИ-31, 2 курс, 2023
+        </footer>
+    </body>
+</html>
