@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Воспанчук Виктория Владимировна. Круги</title>
+        <link rel="stylesheet" href="../main.css">
+        <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
+        <link rel="shortcut icon" href="../favicon-32x32.png">
+        <link rel="icon" href="../favicon-16x16.png">
+        <script>
+            function delCircle(event) {
+                let circle = event.target;
+                circle.style.opacity = "0";
+                circle.style.height = "0px";
+                circle.style.width = "0px";
+                circle.style.transition = "1.5s";
+            }
+
+            function ReCircle() {
+                let circles = document.querySelectorAll('.krug');
+                circles.forEach(circle => {
+                    circle.style.opacity = "1";
+                    circle.style.height = "60px";
+                    circle.style.width = "60px";
+                    circle.style.transition = "1.5s";
+                });
+            }
+        </script>
+        <style>
+            .krug {
+                height: 60px;
+                width: 60px;
+                border-radius: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                color: black;
+                font-weight: bold;
+                font-size: 17px;
+                position: absolute;
+                cursor: pointer;
+                box-shadow: 0 0 10px rgb(171, 171, 253);
+            }
+
+            .a {
+                border: 1px blueviolet solid;
+                left: 200px;
+                top: 300px;
+                background-color: aliceblue;
+            }
+
+            .b {
+                border: 1px rgb(226, 43, 43) solid;
+                left: 500px;
+                top: 100px;
+                background-color: rgb(255, 164, 241);
+            }
+
+            .c {
+                border: 1px rgb(119, 0, 184) solid;
+                left: 700px;
+                top: 450px;
+                background-color: rgb(225, 161, 255);
+            }
+
+            .d {
+                border: 1px rgb(0, 128, 0) solid;
+                left: 150px;
+                top: 150px;
+                background-color: rgb(144, 238, 144);
+            }
+
+            .e {
+                border: 1px rgb(139, 0, 139) solid;
+                left: 350px;
+                top: 400px;
+                background-color: rgb(221, 160, 221);
+            }
+
+            .f {
+                border: 1px rgb(142, 11, 57) solid;
+                left: 600px;
+                top: 250px;
+                background-color: rgb(255, 151, 208);
+            }
+
+            .g {
+                border: 1px rgb(0, 0, 139) solid;
+                left: 900px;
+                top: 200px;
+                background-color: rgb(173, 216, 230);
+            }
+
+            .h {
+                border: 1px rgb(255, 165, 0) solid;
+                left: 450px;
+                top: 200px;
+                background-color: rgb(255, 228, 181);
+            }
+
+            .i {
+                border: 1px rgb(128, 0, 0) solid;
+                left: 750px;
+                top: 100px;
+                background-color: rgb(255, 192, 203);
+            }
+
+            .j {
+                border: 1px rgb(0, 100, 0) solid;
+                left: 800px;
+                top: 350px;
+                background-color: rgb(152, 251, 152);
+            }
+
+            .button input[type="button"] {
+                background-color: rgba(255, 63, 137, 0.929);
+                border: 2px white solid;
+                padding: 10px 20px;
+                color: white;
+                border-radius: 5px;
+                cursor: pointer;
+            }
+
+            .button {
+                text-align: center;
+            }
+
+        </style>
+    </head>
+    <body>
+        <header>
+            НГТУ, ФБ, Лабораторная работа 5.
+        </header>
+        
+        <main>
+            <div class="krug a" onclick="delCircle(event)">1</div>
+            <div class="krug b" onclick="delCircle(event)">2</div>
+            <div class="krug c" onclick="delCircle(event)">3</div>
+            <div class="krug d" onclick="delCircle(event)">4</div>
+            <div class="krug e" onclick="delCircle(event)">5</div>
+            <div class="krug f" onclick="delCircle(event)">6</div>
+            <div class="krug g" onclick="delCircle(event)">7</div>
+            <div class="krug h" onclick="delCircle(event)">8</div>
+            <div class="krug i" onclick="delCircle(event)">9</div>
+            <div class="krug j" onclick="delCircle(event)">10</div>
+
+            <div class="button">
+                <input type="button" value="Кружочки вернитесь пж" onclick="ReCircle()">
+            </div>
+        </main>
+
+        <footer>
+            &copy; Воспанчк Виктория, ФБИ-31, 2 курс, 2023
+        </footer>
+    </body>
+</html>
