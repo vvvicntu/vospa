@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Воспанчук Виктория Владимировна. Дополнительное задание</title>
+        <link rel="stylesheet" href="../main.css">
+        <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
+        <link rel="shortcut icon" href="../favicon-32x32.png">
+        <link rel="icon" href="../favicon-16x16.png">
+        <script>
+            /* Функция применяет фильтр в зависимости от положения мыши */
+            function filtrShow(event) {
+                let img = event.target;
+                let rect = img.getBoundingClientRect();
+                let x = event.clientX - rect.left; /* Позиция мыши по X */
+                let width = rect.width;
+                let percent = (x / width) * 100; /* Процент от ширины */
+                
+                /* Определяем активный фильтр по нажатым клавишам */
+                let filter, filterName;
+                if (event.ctrlKey) {
+                    filter = `grayscale(${percent}%)`;
+                    filterName = "grayscale";
+                } else if (event.altKey) {
+                    filter = `hue-rotate(${percent * 3.6}deg)`;
+                    filterName = "hue-rotate";
+                } else if (event.shiftKey) {
+                    filter = `invert(${percent}%)`;
+                    filterName = "invert";
+                } else {
+                    filter = `blur(${percent * 0.1}px)`;
+                    filterName = "blur";
+                }
+                
+                /* Применяем фильтр */
+                img.style.filter = filter;
+                
+                /* Обновляем информацию о фильтре */
+                document.getElementById('filter-name').textContent = filterName;
+                document.getElementById('filter-intensity').textContent = `${Math.round(percent)}%`;
+            }
+            
+            /* Сбрасываем фильтр при уходе мыши */
+            function delFiltr(event) {
+                event.target.style.filter = 'none';
+                document.getElementById('filter-name').textContent = "нет";
+                document.getElementById('filter-intensity').textContent = "0%";
+            }
+        </script>
+        <style>
+            main {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+            img {
+                width: 300px;
+            }
+            body {
+                text-align: center;
+            }
+            #filtr {
+                margin-top: 10px;
+                font-family: Arial, sans-serif;
+            }
+            .help {
+                margin-top: 20px;
+                padding: 10px;
+                border: 1px solid blueviolet;
+                background-color: aliceblue;
+                border-radius: 5px;
+                max-width: 500px;
+            }
+        </style>
+</head>
+    <body>
+        <header>
+            НГТУ, ФБ, Лабораторная работа 5.
+        </header>
+        
+        <main>
+            <h1>Интерактивные фильтры</h1>
+            <div class="help">
+                <b>Как использовать:</b><br>
+                Наведите курсор на изображение - появится размытие<br>
+                Левая сторона - слабый эффект, правая - сильный <br>
+                Удержание клавиш для других фильтров:<br>
+                <b>Ctrl</b> - чёрно-белый<br> 
+                <b>Alt</b> - смена цветов<br> 
+                <b>Shift</b> - инверсия
+            </div>
+            <br>
+            <div>
+                <img src="https://cdn1.ozone.ru/s3/multimedia-4/c600/6872307628.jpg" onmousemove="filtrShow(event)" 
+                    onmouseout="delFiltr(event)">
+            </div>
+            
+            <div id="filtr">
+                Фильтр: <span id="filter-name">нет</span><br>
+                Интенсивность: <span id="filter-intensity">0%</span>
+            </div>
+            
+        </main>
+
+        <footer>
+            &copy; Воспанчук Виктория, ФБИ-31, 2 курс, 2023
+        </footer>
+    </body>
+</html>
