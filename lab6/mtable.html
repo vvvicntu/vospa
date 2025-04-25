@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Воспанчук Виктория Владимировна. Таблица умножения</title>
+    <link rel="stylesheet" href="../main.css">
+    <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="../favicon-32x32.png">
+    <link rel="icon" href="../favicon-16x16.png">
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        header, footer {
+            width: 100%;
+            padding: 10px 0px;
+            padding-right: 15px;
+            background-color: black;
+            color: white;
+        }
+
+        main {
+            border: 5px solid #333;
+            border-radius: 10px;
+            width: 500px;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: center;
+            background-color: white;
+            box-shadow: 0 4px 8px rgba(255, 255, 255, 0.361);
+        }
+
+        #mtable {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            line-height: 1.5;
+        }
+
+        h1 {
+            margin: 20px;
+            color: black;
+        }
+    </style>
+    <script>
+        function showMultipleTable() {
+            let tbl = document.getElementById('mtable');
+            tbl.innerHTML = '<h1>Таблица умножения</h1>';
+            for(let i = 1; i < 10; i++) {
+                let s = `<div>${i} × 7 = ${i*7}</div>`; 
+                tbl.innerHTML += s;
+            }
+        }
+    </script>
+</head>
+<body onload="showMultipleTable()">
+    <header>
+        НГТУ, ФБ, Лабораторная работа 6.
+    </header>
+    
+    <main>
+        <div id="mtable"></div> 
+    </main>
+
+    <footer>
+        &copy; Воспанчук Виктория, ФБИ-31, 2 курс, 2023
+    </footer>
+</body>
+</html>
