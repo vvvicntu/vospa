@@ -11,7 +11,7 @@
         <script>
             /* Функция применяет фильтр в зависимости от положения мыши */
             function filtrShow(event) {
-                let img = event.target;
+                let img = event.target; 
                 let rect = img.getBoundingClientRect();
                 let x = event.clientX - rect.left; /* Позиция мыши по X */
                 let width = rect.width;
