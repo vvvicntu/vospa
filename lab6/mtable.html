@@ -8,6 +8,40 @@
     <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
     <link rel="shortcut icon" href="../favicon-32x32.png">
     <link rel="icon" href="../favicon-16x16.png">
+    <script>
+        function generateTable() {
+            let multiplier = parseInt(document.getElementById('multiplier').value);
+            let start = parseInt(document.getElementById('start').value);
+            let end = parseInt(document.getElementById('end').value);
+            let errorElement = document.getElementById('error');
+            
+            if (start > end) {
+                errorElement.textContent = "Ошибка: 'Начать с' не может быть больше чем 'Закончить на'";
+                return;
+            }
+            
+            errorElement.textContent = "";
+            
+            let tbl = document.getElementById('mtable');
+            tbl.innerHTML = '<h1>Таблица умножения</h1>';
+            
+            for(let i = start; i <= end; i++) {
+                let result = i * multiplier;
+                let s = `<div>${i} * ${multiplier} = ${result}</div>`; 
+                tbl.innerHTML += s;
+            }
+        }
+        
+        // Функция для инициализации при загрузке страницы
+        function init() {
+            // Назначаем обработчик события onload
+            window.onload = function() {
+                generateTable();
+            };
+        }
+        
+        init();
+    </script>
     <style>
         body {
             display: flex;
@@ -45,25 +79,44 @@
             margin: 20px;
             color: black;
         }
-    </style>
-    <script>
-        function showMultipleTable() {
-            let tbl = document.getElementById('mtable');
-            tbl.innerHTML = '<h1>Таблица умножения</h1>';
-            for(let i = 1; i < 10; i++) {
-                let s = `<div>${i} × 7 = ${i*7}</div>`; 
-                tbl.innerHTML += s;
-            }
+
+        button {
+            padding: 10px 20px;
+            background-color: rgb(194, 71, 134);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
         }
-    </script>
+    </style>
 </head>
-<body onload="showMultipleTable()">
+<body>
     <header>
         НГТУ, ФБ, Лабораторная работа 6.
     </header>
     
     <main>
-        <div id="mtable"></div> 
+        <div id="mtable"></div><br>
+        <div class="controls">
+            <div class="input-group">
+                <label for="multiplier">Умножить на:</label>
+                <input type="number" id="multiplier" value="7" min="1">
+            </div><br>
+
+            <div class="input-group">
+                <label for="start">Начать с:</label>
+                <input type="number" id="start" value="1" min="1">
+            </div><br> 
+
+            <div class="input-group">
+                <label for="end">Закончить на:</label>
+                <input type="number" id="end" value="10" min="1">
+            </div><br>
+
+            <button onclick="generateTable()">Таблица</button>
+            <div id="error" class="error"></div>
+        </div>
     </main>
 
     <footer>
