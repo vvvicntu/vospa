@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Воспанчук Виктория Владимировна. Лабораторная работа 6</title>
+        <link rel="stylesheet" href="../main.css">
+        <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
+        <link rel="shortcut icon" href="../favicon-32x32.png">
+        <link rel="icon" href="../favicon-16x16.png">
+        <script>
+            function showDiagram() {
+                let data = [36, 86, 55, 28, 92, 60, 41, 17, 9, 43];
+                let colors = ['#C71585', '#FF69B4', 'pink', '#DB7093', 'lightyellow', '#FFA07A', '#E0FFFF', '#7FFFD4', '#87CEEB', '#9370DB'];
+                let bars = document.getElementsByClassName('bar');
+                const diagHeight = document.getElementById('diag').clientHeight;
+                const maxData = Math.max(...data);
+                const k = diagHeight / maxData * 0.9;
+                
+                for(let i = 0; i < data.length; i++) {
+                    /* Устанавливаем высоту столбца */
+                    bars[i].style.height = k * data[i] + 'px';
+                    bars[i].style.backgroundColor = colors[i];
+                    
+                    /* Добавляем цифры на столбцах */
+                    bars[i].textContent = data[i];
+                    bars[i].style.display = 'flex';
+                    bars[i].style.justifyContent = 'center';
+                    bars[i].style.color = 'black';
+                }
+            }
+            
+            /* Вызываем функцию  */
+            window.onload = showDiagram;
+        </script>
+        <style>
+            #diag {
+                display: flex;
+                align-items: flex-end;
+                height: 400px;
+                width: 550px;
+                padding: 20px;
+                border: 5px solid #ffffff;
+                box-shadow: 0 0 13px pink;
+                margin: 0 auto; 
+                justify-content: center; 
+            }
+            
+            .bar {
+                border: 2px white solid;
+                width: 50px;
+                height: 100px; 
+                background-color: rgb(193, 148, 235);
+                transition: height 0.5s;
+                flex-shrink: 0;
+            }
+
+            h1 {
+                text-align: center;
+            }
+        </style>
+    </head>
+    <body>
+        <header>
+            НГТУ, ФБ, Лабораторная работа 6.
+        </header>
+        
+        <main>
+        <h1>Диаграмма</h1>
+        <div id="diag">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div> 
+        </main>
+
+        <footer>
+            &copy; Воспанчук Виктория, ФБИ-31, 2 курс, 2023
+        </footer>
+    </body>
+</html>
