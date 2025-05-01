@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Воспанчук Виктория Владимировна. Список книг</title>
+        <link rel="stylesheet" href="../main.css">
+        <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
+        <link rel="shortcut icon" href="../favicon-32x32.png">
+        <link rel="icon" href="../favicon-16x16.png">
+        <script src="books.js"></script>
+        <script>
+            function showBooks() {
+            const bookList = document.getElementById('bookList');
+            
+            for(let i = 0; i < books.length; i++) {
+                const book = books[i];
+                let bookClasses = "";
+                let bestsellerBadge = "";
+                let outOfStockBadge = "";
+                
+                if(book.bestseller) {
+                    bookClasses += " bestseller";
+                    bestsellerBadge = '<span class="bestseller-badge">Бестселлер</span>';
+                }
+                
+                if(!book.inStock) {
+                    bookClasses += " out-of-stock";
+                    outOfStockBadge = '<span class="out-of-stock-badge">Нет в наличии</span>';
+                }
+                
+                bookList.innerHTML += `
+                    <div class="${bookClasses}">
+                        <b>${book.author}.</b>
+                        <i>${book.name}</i>
+                        &mdash; ${book.publicationYear}
+                        <span class="price">${book.price} ₽</span>
+                        ${bestsellerBadge}
+                        ${outOfStockBadge}
+                    </div>
+                `;
+            }
+        }
+        </script>
+        <style>
+            #bookList {
+                color: black;
+                font-family: Georgia, 'Times New Roman', Times, serif;
+                font-size: 18px;
+                line-height: 2;
+                border: 2px rgb(185, 2, 87) solid;
+                box-shadow: 0 0 15px rgb(181, 69, 69);
+                padding: 10px;
+                width: 830px;
+                margin: 0 auto;
+            }
+
+            .bestseller {
+                background-color: rgba(255, 0, 157, 0.1);
+                border-left: 3px solid rgb(255, 0, 153);
+                padding-left: 10px;
+            }
+
+            .out-of-stock {
+                color: rgb(93, 93, 93);
+                opacity: 0.7;
+            }
+
+            .price {
+                font-weight: bold;
+                color: rgb(0, 14, 162);
+                margin-left: 10px;
+            }
+
+            .bestseller-badge {
+                background-color: rgb(255, 98, 161);
+                color: #333;
+                padding: 2px 6px;
+                border-radius: 3px;
+                font-size: 14px;
+                margin-left: 10px;
+                font-weight: bold;
+            }
+
+            .out-of-stock-badge {
+                background-color: #f0f0f0;
+                color: #666;
+                padding: 2px 6px;
+                border-radius: 3px;
+                font-size: 14px;
+                margin-left: 10px;
+                border: 1px solid #ddd;
+            }
+
+            h1 {
+                text-align: center;
+                color: rgb(114, 8, 33);
+                margin: 20px 0;
+            }
+        </style>
+    </head>
+    <body onload="showBooks()">
+        <header>
+            НГТУ, ФБ, Лабораторная работа 6.
+        </header>
+        
+        <main>
+           <h1>Список книг</h1>
+           <div id="bookList"></div>
+        </main>
+
+        <footer>
+            &copy; Воспанчук Виктория, ФБИ-31, 2 курс, 2023
+        </footer>
+    </body>
+</html>
