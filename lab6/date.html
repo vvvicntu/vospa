@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Воспанчук Виктория Владимировна. Дата и время</title>
+        <link rel="stylesheet" href="../main.css">
+        <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
+        <link rel="shortcut icon" href="../favicon-32x32.png">
+        <link rel="icon" href="../favicon-16x16.png">
+        <script>
+            function showDate() {
+                let out = document.getElementById('current-date');
+                let today = new Date();
+                out.innerHTML = "Дата и время для русской локали: " + today.toLocaleString('ru-RU');
+                
+                let out1 = document.getElementById('current-date1');
+                out1.innerHTML = "Дата и время для локали США: " + today.toLocaleString('en-US');
+                
+                let out2 = document.getElementById('current-date2');
+                out2.innerHTML = "Дата и время для немецкой локали: : " + today.toLocaleString('de-DE');
+                
+                let out3 = document.getElementById('current-date3');
+                out3.innerHTML = "Дата и время для арабской локали: : " + today.toLocaleString('ar-AE');
+                
+                let out4 = document.getElementById('current-date4');
+                out4.innerHTML = "Дата и время для беларусской локали: " + today.toLocaleString('be-BY');
+                
+                let out5 = document.getElementById('current-date5');
+                out5.innerHTML = "Дата и время для греческой локали: " + today.toLocaleString('el-GR');
+            }
+        </script>
+        <style>
+            .date {
+                border: 5px rgb(118, 134, 212) solid;
+                font-family: Georgia, 'Times New Roman', Times, serif;
+                line-height: 1.5;
+                font-size: 15px;
+                color: black;
+                background-color: rgb(255, 255, 255);
+                padding: 15px;
+                width: 450px;
+                margin: 0 auto; 
+                justify-content: center;
+                box-shadow: 0 0 10px rgb(92, 92, 186);
+            }
+
+            h1 {
+                text-align: center;
+                color: rgb(66, 61, 196);
+                text-shadow: 0 0 5px rgba(0, 0, 0, 0.507);
+                font-size: 25px;
+            }
+
+            
+        </style>
+    </head>
+    <body onload="showDate()">
+        <header>
+            НГТУ, ФБ, Лабораторная работа 6.
+        </header>
+        
+        <main>
+            <div class="date">
+                <h1>Дата и время</h1>
+                <div id="current-date"></div>
+                <div id="current-date1"></div>
+                <div id="current-date2"></div>
+                <div id="current-date3"></div>
+                <div id="current-date4"></div>
+                <div id="current-date5"></div>
+            </div>
+        </main>
+
+        <footer>
+            &copy; Воспанчук Виктория, ФБИ-31, 2 курс, 2023
+        </footer>
+    </body>
+</html>
