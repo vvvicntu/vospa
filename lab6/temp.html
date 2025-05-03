@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Воспанчук Виктория Владимировна. Температура</title>
+        <link rel="stylesheet" href="../main.css">
+        <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
+        <link rel="shortcut icon" href="../favicon-32x32.png">
+        <link rel="icon" href="../favicon-16x16.png">
+    <script>
+        function showTem() {
+            const diag = document.getElementById('diag'); /* Данные для диаграммы */
+            const dayInput = document.getElementById('day-input'); /* Поле ввода дня */
+            const infoDiv = document.getElementById('info'); /* Блок с информацией */
+            const infoDay = document.getElementById('info-day'); /* Отображение номера дня */
+            const infoMax = document.getElementById('info-max'); /* Макс. температура */
+            const infoMin = document.getElementById('info-min'); /* Мин. температура */
+
+            /* Генерация случайных температур */
+            const temperatures = [];
+            for (let i = 0; i < 30; i++) {
+                const maxTemp = Math.floor(Math.random() * 25) - 5;
+                const minTemp = maxTemp - Math.floor(Math.random() * 10) - 1;
+                temperatures.push({ day: i + 1, max: maxTemp, min: minTemp });
+            }
+            
+            /* Находим экстремальные значения */
+            const allTemps = temperatures.flatMap(t => [t.max, t.min]);
+            const maxTempAll = Math.max(...allTemps); /* Максимум */
+            const minTempAll = Math.min(...allTemps); /* Минимум */
+            const tempRange = maxTempAll - minTempAll; /* Разница температур */
+            
+            // Создаем диаграмму:
+            temperatures.forEach(temp => {
+                // Создаем контейнер для столбца дня
+                const barContainer = document.createElement('div');
+                barContainer.className = 'bar-container';
+                barContainer.dataset.day = temp.day; // Сохраняем номер дня в data-атрибуте
+                
+                /* Рассчитываем высоты столбцов: */
+                const maxHeight = ((temp.max - minTempAll) / tempRange) * 250;
+                const minHeight = ((temp.min - minTempAll) / tempRange) * 250;
+                /* Высота красной части */
+                const diffHeight = maxHeight - minHeight;
+                
+                /* Столбец для максимальной температуры */
+                const maxSt = document.createElement('div');
+                maxSt.className = 'max-bar';
+                maxSt.style.height = `${diffHeight}px`;
+                maxSt.title = `Макс: ${temp.max}°C`; /* Подсказка при наведении */
+                
+                /* Столбец для минимальной температуры */
+                const minBar = document.createElement('div');
+                minBar.className = 'min-bar';
+                minBar.style.height = `${minHeight}px`;
+                minBar.title = `Мин: ${temp.min}°C`; 
+                
+                /* Подпись дня */
+                const dayLabel = document.createElement('div');
+                dayLabel.className = 'day-label';
+                dayLabel.textContent = temp.day;
+                
+                barContainer.appendChild(maxSt);
+                barContainer.appendChild(minBar);
+                barContainer.appendChild(dayLabel);
+                /* Добавляем контейнер в диаграмму*/
+                diag.appendChild(barContainer);
+            });
+            
+            /* Обновление интерфейса */
+            function handleDayInput(event) {
+                const day = parseInt(event.target.value);
+                document.querySelectorAll('.bar-container').forEach(bar => {
+                    bar.classList.remove('selected');
+                });
+                
+                if (day >= 1 && day <= 30) {
+                    const selectedBar = document.querySelector(`.bar-container[data-day="${day}"]`);
+                    if (selectedBar) {
+                        selectedBar.classList.add('selected');
+                        const temp = temperatures[day - 1];
+                        infoDay.textContent = day;
+                        infoMax.textContent = temp.max;
+                        infoMin.textContent = temp.min;
+                        infoDiv.style.display = 'block';
+                    }
+                } else {
+                    infoDiv.style.display = 'none';
+                }
+            }
+            
+            /* Привязываем обработчик события */
+            dayInput.addEventListener('input', handleDayInput);
+        }
+    </script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            color: black;
+        }
+        h1 {
+            text-align: center;
+            color: #4e7edc;
+            text-shadow: 0 0 4px rgba(0, 0, 255, 0.333);
+        }
+        .diag {
+            display: flex;
+            align-items: flex-end;
+            height: 300px;
+            margin-bottom: 20px;
+            gap: 5px;
+            width: 100%;
+        }
+        .bar-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 30px;
+        }
+        .day-label {
+            margin-top: 5px;
+            font-size: 12px;
+        }
+        .max-bar {
+            width: 100%;
+            background-color: #ff6bd3;
+            border-radius: 3px 3px 0 0;
+        }
+        .min-bar {
+            width: 100%;
+            background-color: #4dabf7;
+            border-radius: 0 0 3px 3px;
+        }
+        .selected .max-bar {
+            background-color: #ff009d;
+        }
+        .selected .min-bar {
+            background-color: #1865ff;
+        }
+        .info {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            display: none;
+        }
+        input {
+            padding: 8px;
+            margin-bottom: 10px;
+        }
+
+    </style>
+    </head>
+
+    <body onload="showTem()">
+        <header>
+            НГТУ, ФБ, Лабораторная работа 6.
+        </header>
+
+        <main>
+            <div class="cent">
+                <h1>Температуры за месяц</h1>
+                
+                <div class="diag" id="diag"></div>
+                
+                <div>
+                    <label for="day-input">Введите номер дня (от 1 до 30):</label>
+                    <input type="number" id="day-input" min="1" max="30">
+                </div>
+            </div>
+            
+            <div class="info" id="info">
+                <p>День: <span id="info-day"></span></p>
+                <p>Максимальная температура: <span id="info-max"></span>°C</p>
+                <p>Минимальная температура: <span id="info-min"></span>°C</p>
+            </div>
+        </main>
+        <footer>
+            &copy; Воспанчук Виктория, ФБИ-31, 2 курс, 2023
+        </footer>
+    </body>
+</html>
