@@ -9,7 +9,8 @@
         <link rel="shortcut icon" href="../favicon-32x32.png">
         <link rel="icon" href="../favicon-16x16.png">
         <script>
-            let timeNum; /* Глобальная переменная */
+            let timeNum; /* Глобальные переменные */
+            let timeInterval;
 
             function showDate() {
                 let out = document.getElementById('current-date');
@@ -48,6 +49,18 @@
                 clearInterval(timeNum); 
                 document.getElementById('start-btn').disabled = false;
                 document.getElementById('stop-btn').disabled = true;
+            }
+
+            function startTimeUpdate() {
+                timeInterval = setInterval(showDate, 500); /* Обновляем время каждую секунду */
+                document.getElementById('start-time-btn').disabled = true;
+                document.getElementById('stop-time-btn').disabled = false;
+            }
+            
+            function stopTimeUpdate() {
+                clearInterval(timeInterval);
+                document.getElementById('start-time-btn').disabled = false;
+                document.getElementById('stop-time-btn').disabled = true;
             }
         </script>
         <style>
@@ -88,28 +101,24 @@
                 margin: 15px 0;
             }
 
-            #start-btn {
+            #start-btn, #stop-btn {
                 background-color: rgb(179, 179, 255);
-                border: 1px rgb(36, 48, 176) solid;
-                border-radius: 10px;
+                border-color: rgb(36, 48, 176);
             }
 
-            #stop-btn {
+            #start-time-btn, #stop-time-btn {
                 background-color: rgb(179, 179, 255);
-                border: 1px rgb(36, 48, 176) solid;
-                border-radius: 10px;
+                border-color: rgb(36, 48, 176);
             }
 
-            #start-btn:hover {
+            #start-btn:hover, #stop-btn:hover {
                 background-color: rgb(255, 179, 217);
-                border: 1px rgb(142, 8, 77) solid;
-                border-radius: 10px;
+                border-color: rgb(142, 8, 77);
             }
 
-            #stop-btn:hover {
+            #start-time-btn:hover, #stop-time-btn:hover {
                 background-color: rgb(255, 179, 217);
-                border: 1px rgb(142, 8, 77) solid;
-                border-radius: 10px;
+                border-color: rgb(142, 8, 77);
             }
 
             
@@ -122,7 +131,7 @@
         </header>
         
         <main>
-            <h1>Таймер</h1>
+            <h1>Таймер цвета</h1>
             <div class="butons">
                 <button id="start-btn" onclick="startChangeColors()">Старт</button>
                 <button id="stop-btn" onclick="stopChangeColors()" disabled>Стоп</button>
@@ -135,6 +144,11 @@
                 <div id="current-date3"></div>
                 <div id="current-date4"></div>
                 <div id="current-date5"></div>
+            </div>
+            <h1>Обновление времени</h1>
+            <div class="butons">
+                <button id="start-time-btn" onclick="startTimeUpdate()">Обновлять время</button>
+                <button id="stop-time-btn" onclick="stopTimeUpdate()" disabled>Остановить обновление</button>
             </div>
         </main>
 
