@@ -30,8 +30,7 @@
                 }
             }
             
-            /* Вызываем функцию  */
-            window.onload = showDiagram;
+            
         </script>
         <style>
             #diag {
@@ -60,25 +59,25 @@
             }
         </style>
     </head>
-    <body>
+    <body onload="showDiagram()">
         <header>
             НГТУ, ФБ, Лабораторная работа 6.
         </header>
         
         <main>
-        <h1>Диаграмма</h1>
-        <div id="diag">
-            <div class="bar"></div>
-            <div class="bar"></div>
-            <div class="bar"></div>
-            <div class="bar"></div>
-            <div class="bar"></div>
-            <div class="bar"></div>
-            <div class="bar"></div>
-            <div class="bar"></div>
-            <div class="bar"></div>
-            <div class="bar"></div>
-        </div> 
+            <h1>Диаграмма</h1>
+            <div id="diag">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div> 
         </main>
 
         <footer>
