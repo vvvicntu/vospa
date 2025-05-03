@@ -9,6 +9,8 @@
         <link rel="shortcut icon" href="../favicon-32x32.png">
         <link rel="icon" href="../favicon-16x16.png">
         <script>
+            let timeNum; /* Глобальная переменная */
+
             function showDate() {
                 let out = document.getElementById('current-date');
                 let today = new Date();
@@ -18,16 +20,34 @@
                 out1.innerHTML = "Дата и время для локали США: " + today.toLocaleString('en-US');
                 
                 let out2 = document.getElementById('current-date2');
-                out2.innerHTML = "Дата и время для немецкой локали: : " + today.toLocaleString('de-DE');
+                out2.innerHTML = "Дата и время для немецкой локали: " + today.toLocaleString('de-DE');
                 
                 let out3 = document.getElementById('current-date3');
-                out3.innerHTML = "Дата и время для арабской локали: : " + today.toLocaleString('ar-AE');
+                out3.innerHTML = "Дата и время для арабской локали: " + today.toLocaleString('ar-AE');
                 
                 let out4 = document.getElementById('current-date4');
                 out4.innerHTML = "Дата и время для беларусской локали: " + today.toLocaleString('be-BY');
                 
                 let out5 = document.getElementById('current-date5');
                 out5.innerHTML = "Дата и время для греческой локали: " + today.toLocaleString('el-GR');
+            }
+
+            function changeColors() {
+                const header = document.getElementsByTagName('header')[0];
+                const rgb = `rgb(${Math.random()*255}, ${Math.random()*255}, ${Math.random()*255})`;
+                header.style.color = rgb;
+            }
+
+            function startChangeColors() {
+                timeNum = setInterval(changeColors, 500); 
+                document.getElementById('start-btn').disabled = true;
+                document.getElementById('stop-btn').disabled = false;
+            }
+            
+            function stopChangeColors() {
+                clearInterval(timeNum); 
+                document.getElementById('start-btn').disabled = false;
+                document.getElementById('stop-btn').disabled = true;
             }
         </script>
         <style>
@@ -52,7 +72,48 @@
                 font-size: 25px;
             }
 
+            header {
+                transition: color 0.5s ease; /* Плавное изменение цвета */
+            }
+
+            button {
+                margin: 5px;
+                padding: 5px 15px;
+                cursor: pointer;
+            }
+
+            .butons {
+                display: flex;
+                justify-content: center;
+                margin: 15px 0;
+            }
+
+            #start-btn {
+                background-color: rgb(179, 179, 255);
+                border: 1px rgb(36, 48, 176) solid;
+                border-radius: 10px;
+            }
+
+            #stop-btn {
+                background-color: rgb(179, 179, 255);
+                border: 1px rgb(36, 48, 176) solid;
+                border-radius: 10px;
+            }
+
+            #start-btn:hover {
+                background-color: rgb(255, 179, 217);
+                border: 1px rgb(142, 8, 77) solid;
+                border-radius: 10px;
+            }
+
+            #stop-btn:hover {
+                background-color: rgb(255, 179, 217);
+                border: 1px rgb(142, 8, 77) solid;
+                border-radius: 10px;
+            }
+
             
+
         </style>
     </head>
     <body onload="showDate()">
@@ -61,6 +122,11 @@
         </header>
         
         <main>
+            <h1>Таймер</h1>
+            <div class="butons">
+                <button id="start-btn" onclick="startChangeColors()">Старт</button>
+                <button id="stop-btn" onclick="stopChangeColors()" disabled>Стоп</button>
+            </div>
             <div class="date">
                 <h1>Дата и время</h1>
                 <div id="current-date"></div>
