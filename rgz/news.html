@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Новости компании</title>
+        <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+        <link rel="shortcut icon" href="favicon-32x32.png">
+        <link rel="icon" href="favicon-16x16.png">
+        <script>
+            function toggleFullText(button) {
+                const fullText = button.previousElementSibling;
+
+                if (fullText.style.display === "none" || fullText.style.display === "") {
+                    fullText.style.display = "block";
+                    button.textContent = "Скрыть";
+                } 
+                
+                else {
+                    fullText.style.display = "none";
+                    button.textContent = "Показать";
+                }
+                }
+        </script>
+
+        <style>
+            body {
+            font-family: Corbel, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+            }
+
+            h1 {
+            text-align: center;
+            color: #990000;
+            }
+
+            .news-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            }
+
+            .news-card {
+            background-color: #fff;
+            border: 1px solid #ccc;
+            padding: 15px;
+            width: 300px;
+            border-radius: 5px;
+            box-shadow: 0 0 5px rgba(0,0,0,0.1);
+            position: relative;
+            }
+
+            .news-date {
+            font-size: 0.9em;
+            color: #666;
+            }
+
+            .news-title {
+            font-weight: bold;
+            margin: 10px 0;
+            color: #333;
+            }
+
+            .news-short {
+            margin-bottom: 10px;
+            }
+
+            .news-full {
+            display: none;
+            font-size: 0.95em;
+            color: #444;
+            }
+
+            .show-btn {
+            background-color: #990000;
+            color: white;
+            padding: 5px 10px;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            font-size: 0.9em;
+            }
+
+            nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 200px;
+            height: 100vh;
+            background-color: rgb(160, 4, 4);
+            padding: 20px;
+            
+            }
+
+            nav a {
+            display: block;
+            margin: 10px 0;
+            color: white;
+            }
+
+            main {
+                margin-left: 220px;
+                padding: 2opx;
+            }
+        </style>
+    </head>
+    <body>
+        <main>
+            <nav>
+                <a href="about_company.html">О компании</a>
+                <a href="news.html">Новости компании</a>
+                <a href="kurs.html">Курс валют</a>
+                <a href="contacts.html">Контакты</a>
+                <a href="vide.html">Видео</a>
+            </nav>
+
+            <h1>Новости компании</h1>
+            <div class="news-container">
+
+                <div class="news-card">
+                <div class="news-date">01.04.2025</div>
+                <div class="news-title">МГТС расширяет зону покрытия 5G</div>
+                <div class="news-short">МГТС объявила о запуске пилотных зон покрытия 5G в центральной части Москвы...</div>
+                <div class="news-full">...Первые пользователи уже могут оценить скорость до 1 Гбит/с. В течение года компания планирует охватить все районы города.</div>
+                <button class="show-btn" onclick="toggleFullText(this)">Показать</button>
+                </div>
+
+                <div class="news-card">
+                    <div class="news-date">01.11.2024</div>
+                    <div class="news-title">Пользователи пожаловались на сбои в работе интернета МГТС и МТС</div>
+                    <div class="news-short">Пик жалоб пришелся на 18:15 мск, о проблемах сообщили пользователи в Москве и Московской области, Санкт-Петербурге, 
+                        Тверской, Нижегородской, Иркутской областях и Краснодарском крае...</div>
+                    <div class="news-full">...МТС отказалась от комментариев (МГТС — «дочка» компании»).
+                        В конце января пользователи и операторы сообщали о массовых сбоях в Рунете. 
+                        Многие сайты в зоне .ru медленно открывались или не открывались совсем. 
+                        Большинство жалоб было зафиксировано в Москве, Санкт-Петербурге, Краснодарском крае, 
+                        Башкирии и Костромской области. Проблемы наблюдались и при попытке воспользоваться 
+                        российскими приложениями из-за рубежа.</div>
+                    <button class="show-btn" onclick="toggleFullText(this)">Показать</button>
+                </div>
+
+                <div class="news-card">
+                    <div class="news-date">12.02.2025</div>
+                    <div class="news-title">В Москве поднимут плату за городской телефон</div>
+                    <div class="news-short">Тарифы поднимаются в связи с увеличением затрат на поддержание телеком-инфраструктуры, пояснили в компании МТС (в нее входит МГТС). 
+                        Там утверждают, что цены вырастут не более чем на 5,3% ...</div>
+                    <div class="news-full">...МГТС с 1 июля повышает ежемесячную плату на связь по городскому телефону, следует из СМС-рассылки 
+                        оператора московским клиентам (есть у РБК).<br> «Также изменится стоимость звонков на городские, мобильные номера и 
+                        дополнительные услуги при их наличии», — говорится в рассылке. На сайте компании МТС (в нее входит МГТС) говорится, 
+                        что изменение тарифов в том числе «обусловлено ростом затрат на поддержание телеком-инфраструктуры».</div>
+                    <button class="show-btn" onclick="toggleFullText(this)">Показать</button>
+                </div>
+
+                <div class="news-card">
+                    <div class="news-date">05.03.2025</div>
+                    <div class="news-title">МГТС запустила сервис видеонаблюдения для бизнеса</div>
+                    <div class="news-short">Компания предлагает малому и среднему бизнесу готовые комплекты с облачным хранением...</div>
+                    <div class="news-full">...Услуга позволяет в режиме реального времени следить за происходящим в офисах, складах и торговых точках, а также сохранять архив до 30 дней в облаке.</div>
+                    <button class="show-btn" onclick="toggleFullText(this)">Показать</button>
+                </div>
+                
+                <div class="news-card">
+                    <div class="news-date">20.02.2025</div>
+                    <div class="news-title">МГТС обновила мобильное приложение</div>
+                    <div class="news-short">Пользователи теперь могут видеть детализацию услуг и управлять подписками напрямую...</div>
+                    <div class="news-full">...Новое обновление сделало приложение более удобным: появилась поддержка биометрической авторизации, система напоминаний и чат с техподдержкой.</div>
+                    <button class="show-btn" onclick="toggleFullText(this)">Показать</button>
+                </div>
+                
+                <div class="news-card">
+                    <div class="news-date">10.01.2025</div>
+                    <div class="news-title">Компания модернизирует АТС в старом жилом фонде</div>
+                    <div class="news-short">МГТС начала замену старого оборудования на новые цифровые станции связи в домах...</div>
+                    <div class="news-full">...Программа рассчитана на два года и охватывает более 1,5 миллиона абонентов. Жильцы смогут пользоваться новыми функциями телефонии и интернета.</div>
+                    <button class="show-btn" onclick="toggleFullText(this)">Показать</button>
+                </div>
+                
+                <div class="news-card">
+                    <div class="news-date">05.12.2024</div>
+                    <div class="news-title">МГТС подвела итоги года</div>
+                    <div class="news-short">В 2024 году компания подключила более 100 тыс. новых клиентов и запустила 20 новых сервисов...</div>
+                    <div class="news-full">...Среди достижений: расширение оптоволоконной сети, повышение скорости соединений, запуск платформы "Умный дом" и сотрудничество с муниципальными учреждениями.</div>
+                    <button class="show-btn" onclick="toggleFullText(this)">Показать</button>
+                </div>
+                
+                <div class="news-card">
+                    <div class="news-date">25.11.2024</div>
+                    <div class="news-title">Новый тарифный план «ГигаДом»</div>
+                    <div class="news-short">Компания представила тариф для семьи: интернет, ТВ и связь в одном пакете по выгодной цене...</div>
+                    <div class="news-full">...Тарифный план включает домашний интернет до 1 Гбит/с, цифровое ТВ с 150 каналами и бесплатные звонки на мобильные номера по всей России.</div>
+                    <button class="show-btn" onclick="toggleFullText(this)">Показать</button>
+                </div>
+                
+                <div class="news-card">
+                    <div class="news-date">15.10.2024</div>
+                    <div class="news-title">МГТС приняла участие в цифровом форуме</div>
+                    <div class="news-short">На форуме «Цифровая Россия» компания представила решения в сфере телеметрии и IoT...</div>
+                    <div class="news-full">...Эксперты компании рассказали о внедрении IoT-сенсоров на городском транспорте и в системах ЖКХ, а также об аналитике данных для управления инфраструктурой.</div>
+                    <button class="show-btn" onclick="toggleFullText(this)">Показать</button>
+                </div>
+                
+                <div class="news-card">
+                    <div class="news-date">01.10.2024</div>
+                    <div class="news-title">МГТС расширяет зону Wi-Fi на улицах Москвы</div>
+                    <div class="news-short">Компания увеличивает количество публичных точек доступа в парках, на остановках и станциях метро...</div>
+                    <div class="news-full">...Бесплатный Wi-Fi от МГТС станет доступен ещё в 200 новых локациях до конца года. Приоритет — центры активного отдыха, транспортные узлы и пешеходные зоны.</div>
+                    <button class="show-btn" onclick="toggleFullText(this)">Показать</button>
+                </div>
+            </div>
+        </main>
+    </body>
+</html>
