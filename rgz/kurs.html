@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Курс INR к RUB</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 800px;
+      margin: 20px auto;
+      padding: 20px;
+      background: #f5f5f5;
+    }
+    .converter {
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      margin-bottom: 20px;
+    }
+    input, button {
+      padding: 8px;
+      margin: 5px 0;
+    }
+    input {
+      width: 150px;
+    }
+    button {
+      background: #4CAF50;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    #rateInfo {
+      margin-top: 15px;
+      padding: 10px;
+      background: #e8f5e9;
+      border-radius: 4px;
+    }
+    #chartContainer {
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    #dateInfo {
+      margin-top: 10px;
+      padding: 10px;
+      background: #e3f2fd;
+      border-radius: 4px;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="converter">
+    <h2>Конвертер рублей в индийские рупии</h2>
+    
+    <div>
+      <label>Рубли (RUB):</label><br>
+      <input type="number" id="rub" placeholder="Введите сумму">
+      <button onclick="convertToINR()">→ INR</button>
+    </div>
+    
+    <div>
+      <label>Рупии (INR):</label><br>
+      <input type="number" id="inr" placeholder="Введите сумму">
+      <button onclick="convertToRUB()">→ RUB</button>
+    </div>
+    
+    <div id="rateInfo">
+      Текущий курс загружается...
+    </div>
+  </div>
+
+  <div id="chartContainer">
+    <h2>Курс INR за последний месяц</h2>
+    <canvas id="rateChart"></canvas>
+    <div id="dateInfo"></div>
+  </div>
+
+  <script>
+    // Текущий курс и данные для графика
+    let currentRate = 0;
+    let chartData = {
+      dates: [],
+      rates: []
+    };
+    
+    // Загружаем текущий курс и данные для графика
+    async function loadExchangeData() {
+      try {
+        // Загрузка текущего курса
+        const todayResponse = await fetch('https://api.exchangerate-api.com/v4/latest/RUB');
+        const todayData = await todayResponse.json();
+        
+        if (todayData.rates && todayData.rates.INR) {
+          currentRate = todayData.rates.INR;
+          document.getElementById('rateInfo').innerHTML = 
+            `Текущий курс: 1 RUB = ${currentRate.toFixed(4)} INR<br>
+            1 INR = ${(1/currentRate).toFixed(4)} RUB`;
+        }
+        
+        // Загрузка исторических данных (последние 30 дней)
+        const endDate = new Date();
+        const startDate = new Date();
+        startDate.setDate(endDate.getDate() - 30);
+        
+        // Для демонстрации используем случайные данные
+        // В реальном проекте нужно использовать API с историческими данными
+        generateMockData(startDate, endDate);
+        renderChart();
+        
+      } catch (error) {
+        console.error('Ошибка загрузки данных:', error);
+        document.getElementById('rateInfo').innerHTML = 
+          'Не удалось загрузить курс. Используется примерный курс 1 RUB = 1.1 INR';
+        currentRate = 1.1;
+        generateMockData(new Date(), new Date()); // Генерируем тестовые данные
+        renderChart();
+      }
+    }
+    
+    // Генерация тестовых данных (в реальном проекте замените на реальный API)
+    function generateMockData(startDate, endDate) {
+      chartData.dates = [];
+      chartData.rates = [];
+      
+      // Базовый курс с небольшими случайными колебаниями
+      let baseRate = 1.0 + Math.random() * 0.2;
+      
+      for (let d = new Date(startDate); d <= endDate; d.setDate(d.getDate() + 1)) {
+        const dateStr = d.toISOString().split('T')[0];
+        chartData.dates.push(dateStr);
+        
+        // Добавляем случайные колебания курса
+        const fluctuation = (Math.random() - 0.5) * 0.05;
+        chartData.rates.push(baseRate + fluctuation);
+      }
+    }
+    
+    // Отрисовка графика
+    function renderChart() {
+      const ctx = document.getElementById('rateChart').getContext('2d');
+      
+      const chart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: chartData.dates,
+          datasets: [{
+            label: 'Курс INR',
+            data: chartData.rates,
+            backgroundColor: 'rgba(54, 162, 235, 0.7)',
+            borderColor: 'rgba(54, 162, 235, 1)',
+            borderWidth: 1
+          }]
+        },
+        options: {
+          responsive: true,
+          scales: {
+            y: {
+              beginAtZero: false,
+              title: {
+                display: true,
+                text: 'Курс (RUB за 1 INR)'
+              }
+            },
+            x: {
+              title: {
+                display: true,
+                text: 'Дата'
+              }
+            }
+          },
+          onClick: (e, elements) => {
+            if (elements.length > 0) {
+              const index = elements[0].index;
+              const date = chartData.dates[index];
+              const rate = chartData.rates[index].toFixed(4);
+              
+              // Выделяем выбранный столбец
+              chart.data.datasets[0].backgroundColor = chartData.dates.map((d, i) => 
+                i === index ? 'rgba(255, 99, 132, 0.7)' : 'rgba(54, 162, 235, 0.7)'
+              );
+              chart.update();
+              
+              // Показываем информацию о дате и курсе
+              document.getElementById('dateInfo').style.display = 'block';
+              document.getElementById('dateInfo').innerHTML = 
+                `Дата: <b>${date}</b><br>Курс: <b>1 INR = ${rate} RUB</b>`;
+            }
+          }
+        }
+      });
+    }
+    
+    // Конвертация рублей в рупии
+    function convertToINR() {
+      const rub = parseFloat(document.getElementById('rub').value);
+      if (!isNaN(rub)) {
+        document.getElementById('inr').value = (rub / currentRate).toFixed(2);
+      }
+    }
+    
+    // Конвертация рупий в рубли
+    function convertToRUB() {
+      const inr = parseFloat(document.getElementById('inr').value);
+      if (!isNaN(inr)) {
+        document.getElementById('rub').value = (inr * currentRate).toFixed(2);
+      }
+    }
+    
+    // Загружаем данные при загрузке страницы
+    window.onload = loadExchangeData;
+  </script>
+</body>
+</html>
