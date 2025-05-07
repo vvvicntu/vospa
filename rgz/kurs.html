@@ -8,7 +8,6 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <script>
-        // Массив с датами с 1 по 30 апреля 2025 года
         const chartLabels = [
             "01.04.2025", "02.04.2025", "03.04.2025", "04.04.2025", "05.04.2025",
             "06.04.2025", "07.04.2025", "08.04.2025", "09.04.2025", "10.04.2025",
@@ -19,12 +18,12 @@
         ];
     
         const chartData = [
-            1.00, 0.99, 0.99, 0.99, 0.99, // 01-05 апреля
-            0.99, 1.00, 0.99, 0.99, 0.98, // 06-10 апреля
-            0.98, 0.98, 0.98, 0.96, 0.96, // 11-15 апреля
-            0.96, 0.97, 0.97, 0.98, 0.96, // 16-20 апреля (добавлены корректные данные)
-            0.95, 0.96, 0.96, 0.97, 0.97, // 21-25 апреля
-            0.97, 0.97, 0.97, 0.97, 0.96  // 26-30 апреля
+            1.00, 0.99, 0.99, 0.99, 0.99, 
+            0.99, 1.00, 0.99, 0.99, 0.98, 
+            0.98, 0.98, 0.98, 0.96, 0.96, 
+            0.96, 0.97, 0.97, 0.98, 0.96,  
+            0.95, 0.96, 0.96, 0.97, 0.97, 
+            0.97, 0.97, 0.97, 0.97, 0.96 
         ];
     
         /* Функция для получения курса с ЦБ РФ */
@@ -74,12 +73,12 @@
             const exchangeRateChart = new Chart(context, {
                 type: 'bar',
                 data: {
-                    labels: chartLabels, // Даты для оси X
+                    labels: chartLabels, /* Даты для оси X */
                     datasets: [{
                         label: 'Курс INR к RUB',
-                        data: chartData, // Данные для оси Y (курсы)
-                        backgroundColor: 'rgb(198, 159, 159)', // Цвет столбцов
-                        borderColor: 'rgb(187, 144, 144)', // Цвет рамки столбцов
+                        data: chartData, /* Данные для оси Y */
+                        backgroundColor: 'rgb(198, 159, 159)', 
+                        borderColor: 'rgb(187, 144, 144)', 
                         borderWidth: 1
                     }]
                 },
@@ -87,10 +86,10 @@
                     /* Настройка события клика по столбцу */
                     onClick: function(event, bars) {
                         if (bars.length > 0) {
-                            const number = bars[0].index; // Индекс выбранного столбца
-                            const date = chartLabels[number]; // Дата
-                            const rate = chartData[number]; // Курс
-                            alert(`Дата: ${date}\nКурс: ${rate} ₽`); // Показать информацию о выбранном столбце
+                            const number = bars[0].index; 
+                            const date = chartLabels[number]; 
+                            const rate = chartData[number]; 
+                            alert(`Дата: ${date}\nКурс: ${rate} ₽`); /* Показать информацию о выбранном столбце */
                         }
                     },
                     scales: {
