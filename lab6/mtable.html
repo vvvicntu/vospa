@@ -32,15 +32,6 @@
             }
         }
         
-        // Функция для инициализации при загрузке страницы
-        function init() {
-            // Назначаем обработчик события onload
-            window.onload = function() {
-                generateTable();
-            };
-        }
-        
-        init();
     </script>
     <style>
         body {
@@ -91,7 +82,7 @@
         }
     </style>
 </head>
-<body>
+<body onload="generateTable()">
     <header>
         НГТУ, ФБ, Лабораторная работа 6.
     </header>
