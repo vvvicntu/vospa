@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Воспанчук Виктория Владимировна. Курс акций LSNG</title>
+    <link rel="stylesheet" href="../main.css">
+    <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="../favicon-32x32.png">
+    <link rel="icon" href="../favicon-16x16.png">
+    <script src="share-data.js"></script>
+    <style>
+        main, body {
+            background-color: rgb(172, 216, 255);
+        }
+
+        footer, header {
+            background-color: rgb(27, 3, 83);
+            color: white;
+        }
+
+        h1 {
+            color: rgb(27, 3, 83);
+            text-shadow: 0 0 5px rgb(169, 179, 255);
+            text-align: center;
+        }
+
+        .positive {
+            color: green;
+        }
+
+        .negative {
+            color: red;
+        }
+
+        .zero {
+            color: black;
+        }
+
+        table {
+            margin: 20px auto;
+            border-collapse: collapse;
+        }
+
+        td, th {
+            border: 1px solid rgb(48, 0, 160);
+            padding: 6px 12px;
+            color: rgb(48, 0, 160);
+            text-align: center;
+        }
+
+        #share-info {
+            text-align: center;
+            color: rgb(23, 0, 106);
+            margin-top: 15px;
+        }
+        
+        button {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            font-size: 18px;
+            border: 2px solid rgb(48, 0, 160);
+            background-color: rgb(137, 137, 243);
+            box-shadow: 0 0 10px rgb(161, 85, 249);
+        }
+    </style>
+    <script>
+        function showShare(button) {
+            const table = document.getElementById("share-table");
+
+            for (let i = 0; i < share.length; i++) {
+                /* создаем строку и ячейки */
+                const tr = document.createElement("tr");
+                const tdDate = document.createElement("td");
+                const tdPrice = document.createElement("td");
+                const tdDiff = document.createElement("td");
+
+                tdDate.innerText = date[i];
+                tdPrice.innerText = share[i];
+
+                if (i === 0) {
+                    tdDiff.innerText = "-";
+                } else {
+                    const diff = share[i] - share[i - 1];
+                    /* вывод разницы */
+                    tdDiff.innerText = diff.toFixed(2);
+
+                    if (diff > 0) tdDiff.classList.add("positive");
+                    else if (diff < 0) tdDiff.classList.add("negative");
+                    else tdDiff.classList.add("zero");
+                }
+
+                /* добавляем ячейки в строки */
+                tr.appendChild(tdDate);
+                tr.appendChild(tdPrice);
+                tr.appendChild(tdDiff);
+                table.appendChild(tr);
+            }
+
+            /* reduce проходит по всем элементам и суммирует их */
+            const sum = share.reduce((a, b) => a + b, 0);
+            const avg = (sum / share.length);
+            const max = Math.max(...share);
+            const min = Math.min(...share);
+
+            document.getElementById("share-info").innerText = `Средняя стоимость: ${avg}, Максимум: ${max}, Минимум: ${min}`;
+
+            button.remove();
+        }
+    </script>
+</head>
+<body>
+    <header>
+        НГТУ, ФБ, Лабораторная работа 7.
+    </header>
+
+    <main>
+        <h1>Акции Россети Ленэнерго</h1>
+        <button onclick="showShare(this)">Курс акций</button>
+        <table id="share-table">
+            <tr>
+                <th>Дата</th>
+                <th>Цена акции</th>
+                <th>Разница</th>
+            </tr>
+        </table>
+        <div id="share-info"></div>
+    </main>
+
+    <footer>
+        &copy; Воспанчук Виктория, ФБИ-31, 2 курс, 2023
+    </footer>
+</body>
+</html>
