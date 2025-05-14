@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Воспанчук Виктория Владимировна. Блоки</title>
+        <link rel="stylesheet" href="../main.css">
+        <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
+        <link rel="shortcut icon" href="../favicon-32x32.png">
+        <link rel="icon" href="../favicon-16x16.png">
+        <script>
+            function addNewBlok() {
+                let newBlok = document.createElement('div');
+                newBlok.style.background = 'linear-gradient(to right, pink, rgb(255, 76, 160))';
+                newBlok.style.height = '40px';
+                newBlok.style.margin = '10px';
+                newBlok.style.border = '3px solid white';
+                newBlok.style.width ='300px';
+                newBlok.style.margin = '10px auto'; 
+   
+                /* находит нужный тег размещаем его на странице */
+                document.querySelector('main').appendChild(newBlok)
+
+            }
+        </script>
+        <style>
+            body {
+                background-color: black;
+                color: white;
+            }
+
+            main {
+                background-color: black;
+                text-align: center;
+            }
+
+            header, footer {
+                background-color: rgb(255, 76, 160);
+            }
+
+            button {
+                margin: 5px;
+                margin-top: 30px;
+                padding: 5px 15px;
+                cursor: pointer;
+                background-color: rgb(255, 76, 160);
+                color: white;
+                border: 2px solid white;
+                font-size: 20px;
+                width: 150px;
+                box-shadow: 0 0 10px white;
+            }
+        </style>
+    </head>
+    <body>
+        <header>
+            НГТУ, ФБ, Лабораторная работа 7.
+        </header>
+        
+        <main>
+            <button onclick="addNewBlok()">Добавить блок</button>
+        </main>
+
+        <footer>
+            &copy; Воспанчук Виктория, ФБИ-31, 2 курс, 2023
+        </footer>
+    </body>
+</html>
