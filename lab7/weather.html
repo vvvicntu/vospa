@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Воспанчук Виктория Владимировна. Лабораторная работа 7</title>
+        <link rel="stylesheet" href="../main.css">
+        <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
+        <link rel="shortcut icon" href="../favicon-32x32.png">
+        <link rel="icon" href="../favicon-16x16.png">
+        <script>
+             function getWeatherForecast() {
+                const url = 'https://api.open-meteo.com/v1/forecast?latitude=55.0415&longitude=82.9346&hourly=temperature_2m&timezone=Asia%2FBangkok';
+                fetch(url)
+
+                    /* превращаем ответ в формат json */
+                    .then(response => response.json())
+
+                    /* извлекаем нужные объекты */
+                    .then(data => {
+                        const temperatures = data.hourly.temperature_2m; /* темп по часам */
+                        const times = data.hourly.time; /* само время */
+
+                        /* ищем элемент на странице и извлекаем время */
+                        const weatherInfo = document.getElementById('weatherInfo');
+                        const today = new Date().toISOString().split('T')[0];
+                        let tempAt8 = '', tempAt12 = '', tempAt20 = ''; 
+
+                        times.forEach((time, index) => {
+                            const date = time.split('T')[0];
+                            const hour = time.split('T')[1].split(':')[0];
+
+                            if (date === today) {
+                                if (hour === '08') {
+                                    tempAt8 = temperatures[index];
+                                } else if (hour === '12') {
+                                    tempAt12 = temperatures[index];
+                                } else if (hour === '20') {
+                                    tempAt20 = temperatures[index];
+                                }
+                            }
+                        });
+                        weatherInfo.innerHTML = `
+                            <p><b>Погода в Новосибирске сегодня</b></p>
+                            <p>Время 08:00 (утро): ${tempAt8} °C</p>
+                            <p>Время 12:00 (день): ${tempAt12} °C</p>
+                            <p>Время 20:00 (вечер): ${tempAt20} °C</p>`;
+                    })
+                    
+                let button = document.getElementById("button");
+                button.style.display = "none";
+            }
+        </script>
+        <style>
+            main, body {
+                background-color: rgb(190, 238, 245);
+                color: rgb(0, 0, 0);
+                text-align: center;
+            }
+
+            button {
+                border: 2px solid black;
+                background-color: rgb(135, 234, 249);
+                font-size: 15px;
+                box-shadow: 0 0 13px rgba(88, 119, 255, 0.58);
+                padding: 15px;
+                margin: 10px;
+                margin-bottom: 20px;
+            }
+
+            header, footer {
+                background-color: rgb(5, 5, 90);
+                color: white;
+            }
+        </style>
+    </head>
+    <body>
+        <header>
+            НГТУ, ФБ, Лабораторная работа 7.
+        </header>
+        
+        <main>
+            <h1>Погода в Новосибирске</h1>
+            <button onclick="getWeatherForecast()" id="button">Показать погоду</button>
+            <div id="weatherInfo"></div>
+            <img src="погода.png" width="300px">
+        </main>
+
+        <footer>
+            &copy; Воспанчук Виктория, ФБИ-31, 2 курс, 2023
+        </footer>
+    </body>
+</html>
