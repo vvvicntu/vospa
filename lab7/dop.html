@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Воспанчук Виктория Владимировна. График погоды</title>
+    <link rel="stylesheet" href="../main.css">
+    <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="../favicon-32x32.png">
+    <link rel="icon" href="../favicon-16x16.png">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        function getWeatherForecast() {
+        const url = 'https://api.open-meteo.com/v1/forecast?latitude=55.0415&longitude=82.9346&hourly=temperature_2m,relative_humidity_2m&current_weather=true&timezone=Asia%2FNovosibirsk';
+        
+        /* получение данных */
+        fetch(url)
+            .then(response => response.json())
+            .then(data => {
+                const times = data.hourly.time; /* время */
+                const temps = data.hourly.temperature_2m; /* температура */
+                const humidity = data.hourly.relative_humidity_2m; /* влажность */
+
+                /* приводим время к нужному формату */
+                const today = new Date().toISOString().split('T')[0];
+                const labels = [];
+                const todayTemps = [];
+                const todayHumidity = [];
+
+
+                /* Метод startsWith() возвращает true, если time 
+                относится к сегодняшнему дню 
+                
+                .slice(0, 5) — обрезает строку, оставляя только первые 5 символов */
+
+                times.forEach((time, i) => {
+                    /* начинается ли строка time с текущей даты */
+                    if (time.startsWith(today)) {
+                        const hour = time.split('T')[1].slice(0, 5); /* формат ЧЧ:ММ */
+                        labels.push(hour);
+                        todayTemps.push(temps[i]);
+                        todayHumidity.push(humidity[i]);
+                    }
+                });
+
+                /* вывод текущей температуры */
+                const currentTemp = data.current_weather.temperature;
+                document.getElementById('weatherInfo').innerHTML = `
+                    <p><b>Текущая температура: ${currentTemp} °C</b></p>
+                `;
+
+                /* график температуры */
+                const ctx1 = document.getElementById('temperatureChart').getContext('2d');
+                new Chart(ctx1, {
+                    type: 'bar', /* столбчатая диаграмма */
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            label: 'Температура (°C)',
+                            data: todayTemps,
+                            backgroundColor: 'rgba(255, 99, 132, 0.6)'
+                        }]
+                    },
+                    options: {
+                        plugins: {
+                            title: {
+                                display: true,
+                                text: 'Прогноз температуры по часам'
+                            }
+                        },
+                        scales: {
+                            y: {
+                                beginAtZero: false
+                            }
+                        }
+                    }
+                });
+
+                /* график влажности */
+                const ctx2 = document.getElementById('humidityChart').getContext('2d');
+                new Chart(ctx2, {
+                    type: 'bar',
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            label: 'Влажность (%)',
+                            data: todayHumidity,
+                            backgroundColor: 'rgba(54, 162, 235, 0.6)'
+                        }]
+                    },
+                    options: {
+                        plugins: {
+                            title: {
+                                display: true,
+                                text: 'Прогноз влажности по часам'
+                            }
+                        },
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                max: 100
+                            }
+                        }
+                    }
+                });
+
+                document.getElementById("button").style.display = "none";
+            });
+    }
+    </script>
+    <style>
+        main, body {
+            background-color: rgb(237, 190, 245);
+            color: rgb(0, 0, 0);
+            text-align: center;
+        }
+
+        button {
+            border: 2px solid black;
+            background-color: rgb(255, 176, 226);
+            font-size: 15px;
+            box-shadow: 0 0 13px rgba(88, 119, 255, 0.58);
+            padding: 15px;
+            margin: 10px;
+            margin-bottom: 20px;
+        }
+
+        header, footer {
+            background-color: rgb(5, 5, 90);
+            color: white;
+            padding: 10px;
+        }
+
+        canvas {
+            max-width: 90%;
+            margin: 20px auto;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        НГТУ, ФБ, Лабораторная работа 7.
+    </header>
+
+    <main>
+        <h1>График температуры и влажности</h1>
+        <button onclick="getWeatherForecast()" id="button">Показать график</button>
+        <div id="weatherInfo"></div>
+        <canvas id="temperatureChart" width="400" height="200"></canvas>
+        <canvas id="humidityChart" width="400" height="200"></canvas>
+    </main>
+
+    <footer>
+        &copy; Воспанчук Виктория, ФБИ-31, 2 курс, 2023
+    </footer>
+</body>
+</html>
