@@ -24,6 +24,30 @@
             header, footer {
                 background-color: black;
             }
+
+            button {
+                margin: 5px auto;
+                width: 60px;
+                background-color: rgb(0, 0, 0);
+                color: white;
+                text-align: center;
+                display: block; 
+                border-radius: 5px; 
+                cursor: pointer; 
+                font-size: 16px; 
+                transition: background-color 0.3s;
+            }
+
+            button:hover {
+                background-color: #ac00d3; /* эффект при наведении */
+            }
+
+            p {
+                color:black;
+                font-size: 20px;
+                text-align: center;
+            }
+
         </style>
     </head>
     <body>
@@ -34,6 +58,9 @@
         <main>
             <div id="app">
                 <h1 :title="messgeRUS">{{ message }}</h1>
+                <p>Счетчик: {{ counter }}</p>
+                <button @click="incCounter">+ +</button>
+                <button @click="decCounter">- -</button>
             </div>
         </main>
 
@@ -47,8 +74,18 @@
                     return {
                         message: 'Hello!',
                         messgeRUS: 'Привет!',
+                        counter: 1,
                     }
                 },
+                methods: {
+                    incCounter() {
+                        this.counter++;
+                    },
+
+                    decCounter() {
+                            this.counter--;
+                        },
+                }
             }).mount('#app');
         </script>
     </body>
