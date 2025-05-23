@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Воспанчук Виктория Владимировна. Фреймворк Vue</title>
+        <link rel="stylesheet" href="../main.css">
+        <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
+        <link rel="shortcut icon" href="../favicon-32x32.png">
+        <link rel="icon" href="../favicon-16x16.png">
+        <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+        <style>
+            h1 {
+                text-align: center;
+                color: black;
+                text-shadow: 0 0 5px rgb(255, 74, 104);
+                font-size: 50px;
+            }
+
+            main, body {
+                background-color: rgb(222, 192, 255);
+            }
+
+            header, footer {
+                background-color: black;
+            }
+        </style>
+    </head>
+    <body>
+        <header>
+            НГТУ, ФБ, Лабораторная работа 8.
+        </header>
+        
+        <main>
+            <div id="app">
+                <h1 :title="messgeRUS">{{ message }}</h1>
+            </div>
+        </main>
+
+        <footer>
+            &copy; Воспанчук Виктория, ФБИ-31, 2 курс, 2023
+        </footer>
+
+        <script>
+            Vue.createApp({
+                data() {
+                    return {
+                        message: 'Hello!',
+                        messgeRUS: 'Привет!',
+                    }
+                },
+            }).mount('#app');
+        </script>
+    </body>
+</html>
