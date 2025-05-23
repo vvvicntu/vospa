@@ -25,7 +25,7 @@
                 background-color: black;
             }
 
-            button {
+            .but {
                 margin: 5px auto;
                 width: 60px;
                 background-color: rgb(0, 0, 0);
@@ -50,6 +50,13 @@
 
             div {
                 color: black;
+                
+            }
+
+            button {
+                background-color: rgb(0, 0, 0);
+                color: white;
+                margin: 5px;
             }
 
         </style>
@@ -63,8 +70,8 @@
             <div id="app">
                 <h1 :title="messgeRUS">{{ message }}</h1>
                 <p>Счетчик: {{ counter }}</p>
-                <button @click="incCounter" v-if="counter < 10">+ +</button>
-                <button @click="decCounter" v-if="counter > 0">- -</button>
+                <button class="but" @click="incCounter" v-if="counter < 10">+ +</button>
+                <button class="but" @click="decCounter" v-if="counter > 0">- -</button>
                 <hr>
 
                 <h2>Пользователь:</h2>
@@ -75,8 +82,8 @@
 
                 <h2>Цветы</h2>
                 <ul>
-                    <li v-for="flower in flowers">
-                        {{ flower }}
+                    <li v-for="(flower, id) in flowers">
+                        {{ flower }} <button @click="edit(id,flower)">?</button>
                     </li>
                 </ul>
                 <hr>
@@ -109,8 +116,14 @@
                     },
 
                     decCounter() {
-                            this.counter--;
-                        },
+                        this.counter--;
+                    },
+
+                    edit(id, flower) {
+                        let newName = prompt('Введите имя цветка: ', flower);
+                        this.flowers[id] = newName;
+                    }
+
                 }
             }).mount('#app');
         </script>
