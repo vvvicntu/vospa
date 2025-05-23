@@ -48,6 +48,10 @@
                 text-align: center;
             }
 
+            div {
+                color: black;
+            }
+
         </style>
     </head>
     <body>
@@ -61,6 +65,13 @@
                 <p>Счетчик: {{ counter }}</p>
                 <button @click="incCounter" v-if="counter < 10">+ +</button>
                 <button @click="decCounter" v-if="counter > 0">- -</button>
+                <hr>
+
+                <h2>Пользователь:</h2>
+                <div>Имя: {{ user.name }}</div>
+                <div>Возраст: {{ user.age }}</div>
+                <div>Телефон: {{ user.tel }}</div>
+
             </div>
         </main>
 
@@ -75,6 +86,11 @@
                         message: 'Hello!',
                         messgeRUS: 'Привет!',
                         counter: 1,
+                        user: {
+                            name: 'Травля',
+                            age: '19',
+                            tel: '8-800-555-35-35'
+                        },
                     }
                 },
                 methods: {
