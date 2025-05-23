@@ -88,6 +88,17 @@
                 </ul>
                 <hr>
 
+                <h2>Калькулятор</h2>
+                <div>
+                    <input type="number" v-model="a" style="width: 80px">
+                    <span>+</span>
+                    <input type="number" v-model="b" style="width: 80px">
+                    <button @click="sum">=</button>
+                    <span >{{ result }}</span>
+                </div>
+                <hr>
+                
+
             </div>
         </main>
 
@@ -108,6 +119,9 @@
                             tel: '8-800-555-35-35'
                         },
                         flowers: ['роза','тюльпан','маргаритка','героин','одуванчик'],
+                        a: 1,
+                        b: 10,
+                        result: '',
                     }
                 },
                 methods: {
@@ -125,7 +139,11 @@
                         setTimeout(() => {
                             this.flowers[id] = newName;
                         }, 3000);
-                    }
+                    },
+
+                    sum() {
+                        this.result = this.a + this.b;
+                    },
 
                 }
             }).mount('#app');
